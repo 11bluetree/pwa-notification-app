@@ -1,0 +1,22 @@
+{
+  "name": "pwa-notification-app",
+  "version": "1.0.0",
+  "description": "A simple PWA that shows notifications using service workers.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "keywords": [
+    "PWA",
+    "notifications",
+    "service worker"
+  ],
+  "author": "",
+  "license": "ISC"
+}
