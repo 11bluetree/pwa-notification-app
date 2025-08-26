@@ -106,6 +106,20 @@ app.post('/send', async (req, res) => {
     res.json({ results });
 });
 
+// 明示的な購読解除
+app.post('/unsubscribe', (req, res) => {
+    const { endpoint } = req.body || {};
+    if (!endpoint) return res.status(400).json({ error: 'Invalid endpoint' });
+    const map = app.locals.subscriptionMap || new Map();
+    if (map.delete(endpoint)) {
+        subscriptions.delete(endpoint);
+        persistSubs();
+        console.log('サブスク終了');
+        console.log(`サブスク数 ${map.size}`);
+    }
+    res.json({ status: 'ok' });
+});
+
 // デバッグ: 現在の購読確認
 app.get('/debug/subscriptions', (req, res) => {
     const map = app.locals.subscriptionMap || new Map();

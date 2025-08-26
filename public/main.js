@@ -90,7 +90,10 @@ if (unsubButton) {
         const reg = await navigator.serviceWorker.ready;
         const sub = await reg.pushManager.getSubscription();
         if (sub) {
+            const endpoint = sub.endpoint;
             try { await sub.unsubscribe(); } catch (_) {}
+            // サーバーへ解除通知
+            try { await fetch('/unsubscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint }) }); } catch (_) {}
             if (statusEl) statusEl.textContent = '未購読';
             console.log('サブスク終了');
         } else {
