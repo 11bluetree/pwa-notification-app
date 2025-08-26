@@ -4,10 +4,17 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
     background-color: #f0f0f0;
+    padding-top: 10vh;
 }
+
+.app { text-align: center; }
+.actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+button.secondary { background-color: #6c757d; }
+button.secondary:hover { background-color: #555f66; }
+.status { margin-top: 16px; font-size: 14px; color: #333; min-height: 1.2em; }
 
 button {
     padding: 10px 20px;

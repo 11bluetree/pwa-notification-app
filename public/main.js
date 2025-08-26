@@ -1,4 +1,6 @@
 const button = document.getElementById('notifyButton');
+const unsubButton = document.getElementById('unsubButton');
+const statusEl = document.getElementById('status');
 
 if ('serviceWorker' in navigator) {
     // キャッシュ更新のため適当にバージョンクエリ付与
@@ -70,11 +72,29 @@ async function triggerServerPush() {
     await ensureSubscription();
     new Notification('購読完了');
     triggerServerPush();
+    if (statusEl) statusEl.textContent = '購読中';
 });
 
 // ページ読み込み後、既に通知許可済みなら購読を自動同期
 window.addEventListener('load', async () => {
     if (Notification.permission === 'granted') {
         try { await ensureSubscription(); } catch (_) {}
+        if (statusEl) statusEl.textContent = '購読中';
     }
 });
+
+// 解除処理
+if (unsubButton) {
+    unsubButton.addEventListener('click', async () => {
+        if (!('serviceWorker' in navigator)) return;
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.getSubscription();
+        if (sub) {
+            try { await sub.unsubscribe(); } catch (_) {}
+            if (statusEl) statusEl.textContent = '未購読';
+            console.log('サブスク終了');
+        } else {
+            if (statusEl) statusEl.textContent = '未購読';
+        }
+    });
+}

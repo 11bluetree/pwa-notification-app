@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>PWA Notification App</h1>
-    <button id="notifyButton">通知を表示</button>
+    <div class="app">
+        <h1>PWA Notification App</h1>
+        <div class="actions">
+            <button id="notifyButton">通知を表示</button>
+            <button id="unsubButton" class="secondary">通知解除</button>
+        </div>
+        <div id="status" class="status" aria-live="polite"></div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
