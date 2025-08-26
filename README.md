@@ -2,6 +2,8 @@
 
 This project is a simple Progressive Web App (PWA) that demonstrates how to implement notifications using a service worker. The application allows users to receive notifications when a button is clicked.
 
+[Qiita article](https://qiita.com/11bluetree/items/47d2ec8019f59de122d5)
+
 ## Project Structure
 
 ```
